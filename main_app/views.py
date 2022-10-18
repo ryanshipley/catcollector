@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Cat
+from django.views.generic.edit import CreateView
 
 # Add the following import
 from django.http import HttpResponse
@@ -18,3 +19,7 @@ def cats_index(request):
 def cats_detail(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
     return render(request, 'cats/detail.html', {'cat': cat})
+
+class CatCreate(CreateView):
+    model = Cat
+    fields = '__all__'
